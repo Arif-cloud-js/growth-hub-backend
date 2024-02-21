@@ -11,7 +11,7 @@ const router = require('./Routes/Investment')
 const router_business = require('./Routes/Busuness')
 const express = require('express');
 const mongoose = require('mongoose');
-
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { PythonShell } = require('python-shell');
 const cors = require('cors');
@@ -199,11 +199,11 @@ app.post('/register', async (req, res) => {
     }
 
     // Hash the password
-  
+    const hashedPassword = await bcrypt.hash(password, 12);
      
     // Create a new user
     const newUser = new Users({
-      username, email, password, role, experience1, experience2,
+      username, email, password: hashedPassword, role, experience1, experience2,
       skill1, skill2, skill3, skill4,
     });
     await newUser.save();
@@ -230,13 +230,20 @@ app.post('/login', async (req, res) => {
       if (!email || !password || !role) {
         return res.status(401).json({ error: 'Please fill all fields' });
       }
-      const user = await Users.findOne({ email, role ,password});
+      const user = await Users.findOne({ email, role });
 
       if (!user) {
         
         return res.status(401).json({ error: 'Invalid credentials...' });
       }
 
+      // Check password
+      const passwordMatch = await bcrypt.compare(password, user.password);
+      if (!passwordMatch) {
+        return res.status(401).json({ error: 'Invalid credentials.' });
+      }
+
+      // Generate JWT token
       const token = jwt.sign({ userId: user._id, email: user.email }, secretKey, { expiresIn: '1hr' });
       const roles = user.role;
       
