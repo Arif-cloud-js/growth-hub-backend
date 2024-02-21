@@ -1,0 +1,85 @@
+/* client.css */
+
+/* Container styling */
+#projectFormContainer {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 2px solid #3498db;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(29, 13, 13, 0.2);
+  background-color: #f8f9fa;
+  position: relative;
+}
+
+/* Heading styling */
+#projectFormContainer h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Form styling */
+#projectForm {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+/* Label styling */
+.projectLabel {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Input and textarea styling */
+.projectInput,
+.projectTextarea,
+.projectSelect {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #3498db;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+/* Specific styling for Payment Amount and Payment Method */
+.projectInput[type="number"],
+.projectInput[type="text"] {
+  width: 100%;
+}
+
+/* Separate line for description */
+.projectTextarea {
+  grid-column: span 2;
+}
+
+/* Button styling */
+.grey.accent-4 {
+  width: 100%;
+  padding: 12px;
+  background-color: #2ecc71;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.grey.accent-4:hover {
+  background-color: #27ae60;
+}
+
+/* Optional: Add media queries for responsiveness */
+@media (max-width: 600px) {
+  #projectFormContainer {
+    max-width: 100%;
+  }
+
+  /* Adjust form styling for smaller screens */
+  #projectForm {
+    grid-template-columns: 1fr;
+  }
+}

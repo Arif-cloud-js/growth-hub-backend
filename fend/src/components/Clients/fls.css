@@ -1,0 +1,54 @@
+/* fls.css */
+
+.fls-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}
+
+.fls-sidebar {
+  width: 50%;
+  padding: 20px;
+  background-color:  rgba(255, 255, 255, 0.952);
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.fls-list {
+  list-style: none;
+  padding: 0;
+}
+
+.fls-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  transition: box-shadow 0.3s;
+}
+
+.fls-item:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.fls-item div {
+  margin-bottom: 10px;
+}
+
+.fls-item h5 {
+  color: #007bff;
+  margin: 0;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .fls-container {
+    flex-direction: column;
+  }
+
+  .fls-sidebar {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
