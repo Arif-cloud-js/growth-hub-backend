@@ -628,8 +628,7 @@ function authenticateToken(req, res, next) {
 }
 
 app.get("/",(req,res)=>{
-  app.use(express.static(path.resolve(__dirname,"fend","build")));
-  res.sendFile(path.resolve(__dirname,"fend","build","index.html"));
+  res.send('Server is running ')
 })
 app.get('/about', authenticateToken, (req, res) => {
   res.status(200).send(req.rootUser);
