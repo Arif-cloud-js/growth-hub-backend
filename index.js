@@ -1,6 +1,8 @@
 const PostJob = require('./Models/PostJob')
 const Project = require('./Models/Project')
 const path = require('path')
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = "mongodb+srv://marifalam450:marifalam450@cluster0.mmo2jqq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 const PostPlan = require('./Models/PostPlan')
 const ContactUs = require('.//Models/Contactus')
 const { KNeighborsClassifier } = require('@tensorflow-models/knn-classifier');
@@ -27,10 +29,32 @@ app.use(bodyParser.json({ limit: "30mb", extended: "true" }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: "true" }));
 app.use(cors());
 
-// Connect to MongoDB
-mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Connected to MongoDB'))
-  .catch(err => console.error('Failed to connect to MongoDB', err));
+
+
+// Create a MongoClient with a MongoClientOptions object to set the Stable API version
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
+});
+
+async function run() {
+  try {
+    // Connect the client to the server	(optional starting in v4.7)
+    await client.connect();
+    // Send a ping to confirm a successful connection
+    await client.db("admin").command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+  } finally {
+    // Ensures that the client will close when you finish/error
+    await client.close();
+  }
+}
+run().catch(console.dir);
+
+
 
 app.get('/manageusers', async (req, res) => {
   await Users.find()

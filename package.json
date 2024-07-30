@@ -24,6 +24,7 @@
     "jsonwebtoken": "^9.0.0",
     "ml-regression": "^5.0.0",
     "ml-regression-multivariate-linear": "^2.0.4",
+    "mongodb": "^6.8.0",
     "mongoose": "^8.1.0",
     "nodemon": "^2.0.22",
     "python-shell": "^5.0.0"
