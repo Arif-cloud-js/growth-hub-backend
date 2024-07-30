@@ -54,10 +54,6 @@ async function run() {
 }
 run().catch(console.dir);
 
-app.get('/just-response',(req,res)=>{
-  res.send('yes response is working .......')
-  
-})
 
 app.get('/manageusers', async (req, res) => {
   await Users.find()
@@ -174,6 +170,10 @@ app.get('/countroles', async (req, res) => {
   }
 });
 
+app.get('/just-response',async(req,res)=>{
+  res.send('yes response is working .......')
+  
+})
 app.post('/sendproposal', async(req, res) => {
   const {PSId, Id, username, amount, completionTime, detail, } = req.body;
   try {
