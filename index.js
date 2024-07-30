@@ -54,7 +54,10 @@ async function run() {
 }
 run().catch(console.dir);
 
-
+app.get('/just-response',(req,res)=>{
+  res.send('yes response is working .......')
+  )
+}
 
 app.get('/manageusers', async (req, res) => {
   await Users.find()
